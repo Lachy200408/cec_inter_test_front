@@ -9,7 +9,7 @@ export default function Header() {
     <header className="w-full h-24 bg-app-blue-500 flex justify-between items-center lg:px-12 md:px-8 px-4">
       <div className="flex gap-4 items-center">
         <Logo />
-        <PrimaryButtonLink href="/" className="w-max">
+        <PrimaryButtonLink href="/" className="w-max text-app-blue-500">
           <MagnifyingGlassIcon className="size-6" />
           <span className={montserratFont.className}>Explora</span>
           <ChevronDownIcon className="size-5" />
@@ -23,9 +23,9 @@ export default function Header() {
         <TertiaryButtonLink href="/" className="w-max">
           <span className={montserratFont.className}>Para profesores</span>
         </TertiaryButtonLink>
-        <PrimaryButtonLink href="/" className="w-max">
+        <PrimaryButtonLink href="/" className="w-max text-app-blue-500">
           <UserIcon className="size-6" />
-          <span className="text-bold">Acceder</span>
+          <span className="font-bold">Acceder</span>
         </PrimaryButtonLink>
       </nav>
     </header>
