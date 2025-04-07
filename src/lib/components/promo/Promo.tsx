@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function Promo() {
   return (
-    <article className="w-full p-12 h-52 bg-app-blue-500 rounded-lg flex flex-col items-center gap-4 relative">
+    <article className="max-w-7xl w-full p-12 h-52 bg-app-blue-500 rounded-lg flex flex-col items-center gap-4 relative">
       <Image
         src={'/laptop.webp'}
         alt=""
@@ -17,7 +17,7 @@ export default function Promo() {
         height={99}
         className="absolute top-1/2 -right-16 -translate-y-1/2 h-20 w-auto"
       />
-      <h1>A un click de aprender</h1>
+      <h3>A un click de aprender</h3>
       <p className="max-w-64 text-wrap text-center">
         Prueba nuestro nuevo curso de marketing para principiantes
       </p>
