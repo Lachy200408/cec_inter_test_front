@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils/cn'
 
 export default function SecondaryButtonLink({ href, children, className = '' }: ButtonLinkProps) {
   return (
-    <BaseButtonLink href={href} className={cn('text-white', className)}>
+    <BaseButtonLink href={href} className={cn('py-2 border border-app-blue-500', className)}>
       {children}
     </BaseButtonLink>
   )
