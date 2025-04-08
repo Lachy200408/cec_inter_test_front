@@ -8,7 +8,7 @@ import AirbnbSponsor from '@/lib/icons/Airbnb'
 
 export default function Companies() {
   return (
-    <article className="max-w-7xl w-full grid justify-items-center gap-8">
+    <article className="max-w-320 w-full grid justify-items-center gap-8">
       <h5 className="w-max text-center text-black relative">
         Nuestros estudiantes se graduan y trabajan con{' '}
         <RectDecorator className="bg-app-yellow-500 w-11 absolute top-full left-0" />

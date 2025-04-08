@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils/cn'
 
 export default function Promo() {
   return (
-    <article className="max-w-7xl w-full p-12 h-52 bg-app-blue-500 rounded-lg flex flex-col items-center gap-4 relative">
+    <article className="max-w-320 w-full p-12 h-52 bg-app-blue-500 rounded-lg flex flex-col items-center gap-4 relative">
       <Image
         src={'/laptop.webp'}
         alt=""
@@ -19,8 +19,8 @@ export default function Promo() {
         height={99}
         className="absolute top-1/2 -right-16 -translate-y-1/2 h-20 w-auto"
       />
-      <h3 className={montserratFont.className}>A un click de aprender</h3>
-      <p className={cn('max-w-64 text-wrap text-center', montserratFont.className)}>
+      <h3 className={cn('text-white', montserratFont.className)}>A un click de aprender</h3>
+      <p className={cn('text-white max-w-64 text-wrap text-center', montserratFont.className)}>
         Prueba nuestro nuevo curso de marketing para principiantes
       </p>
     </article>
