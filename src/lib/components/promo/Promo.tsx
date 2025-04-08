@@ -1,4 +1,6 @@
 import Image from 'next/image'
+import { montserratFont } from '@/lib/fonts/montserrat'
+import { cn } from '@/lib/utils/cn'
 
 export default function Promo() {
   return (
@@ -17,8 +19,8 @@ export default function Promo() {
         height={99}
         className="absolute top-1/2 -right-16 -translate-y-1/2 h-20 w-auto"
       />
-      <h3>A un click de aprender</h3>
-      <p className="max-w-64 text-wrap text-center">
+      <h3 className={montserratFont.className}>A un click de aprender</h3>
+      <p className={cn('max-w-64 text-wrap text-center', montserratFont.className)}>
         Prueba nuestro nuevo curso de marketing para principiantes
       </p>
     </article>
