@@ -49,9 +49,29 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --height-sm: 320px;
+  --height-md: 480px;
+  --height-128: 512px;
+  --height-lg: 640px;
+  --height-180: 720px;
+  --height-192: 768px;
+  --height-xl: 800px;
+  --height-2xl: 960px;
+
+  --spacing-92: 368px;
+  --spacing-96: 384px;
+  --spacing-124: 496px;
+  --spacing-320: 1280px;
+  --spacing-360: 1440px;
+
+  --shadow-footer: 0px -8px 8px -4px #0001;
 }
 
 @layer base {
+  :root {
+    font-size: 14px;
+  }
   h1 {
     @apply text-5xl font-bold;
   }
@@ -80,7 +100,5 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
