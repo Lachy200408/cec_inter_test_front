@@ -14,12 +14,12 @@ export default function BarSlider({ children, className, color = 'blue' }: Props
   return (
     <>
       <div className="relative w-full">
-        <ul className={cn('w-full overflow-x-hidden flex justify-between', className)}>
+        <ul className={cn('w-full overflow-x-hidden flex justify-around', className)}>
           {children.map((child, index) => {
             return <li key={index}>{child}</li>
           })}
         </ul>
-        <SliderButton onClick={() => {}} className="absolute top-1/2 -right-16 -translate-y-1/2" />
+        <SliderButton onClick={() => {}} className="absolute top-1/2 -right-12 -translate-y-1/2" />
       </div>
 
       <NavigationBar color={color} />

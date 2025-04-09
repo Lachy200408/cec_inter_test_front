@@ -13,10 +13,10 @@ export default function Testimonies() {
         montserratFont.className
       )}
     >
-      <h3>
+      <h2>
         Testimonios
         <RectDecorator className="bg-app-blue-500 mt-3 w-14" />
-      </h3>
+      </h2>
       <BarSlider color="yellow">
         {testimonies.map((testimony, index) => {
           return (
