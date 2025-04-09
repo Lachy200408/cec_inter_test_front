@@ -1,5 +1,5 @@
 import RectDecorator from '@/lib/components/decorators/RectDecorator'
-import BarSlider from '@/lib/components/barslider/BarSlider'
+import BarSlider from '@/lib/components/sliders/BarSlider'
 import TestimonyCard from '@/lib/components/testimonycard/TestimonyCard'
 import { montserratFont } from '@/lib/fonts/montserrat'
 import { cn } from '@/lib/utils/cn'
@@ -18,17 +18,32 @@ export default function Testimonies() {
         <RectDecorator className="bg-app-blue-500 mt-3 w-14" />
       </h2>
       <BarSlider color="yellow">
-        {testimonies.map((testimony, index) => {
-          return (
-            <TestimonyCard
-              key={testimony.id}
-              className={
-                index % 2 === 0 ? 'bg-app-yellow-500/15' : 'bg-app-blue-500 **:text-white/80'
-              }
-              {...testimony}
-            />
-          )
-        })}
+        <ul className="flex justify-around gap-8 w-full duration-700 ease-in-out bg-white">
+          {testimonies.map((testimony, index) => {
+            return (
+              <TestimonyCard
+                key={testimony.id + index + 34}
+                className={
+                  index % 2 === 0 ? 'bg-app-yellow-500/15' : 'bg-app-blue-500 **:text-white/80'
+                }
+                {...testimony}
+              />
+            )
+          })}
+        </ul>
+        <ul className="flex justify-around gap-8 w-full duration-700 ease-in-out bg-white">
+          {testimonies.map((testimony, index) => {
+            return (
+              <TestimonyCard
+                key={testimony.id + index}
+                className={
+                  index % 2 !== 0 ? 'bg-app-yellow-500/15' : 'bg-app-blue-500 **:text-white/80'
+                }
+                {...testimony}
+              />
+            )
+          })}
+        </ul>
       </BarSlider>
     </article>
   )

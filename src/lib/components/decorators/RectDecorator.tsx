@@ -5,5 +5,5 @@ interface Props {
 }
 
 export default function RectDecorator({ className }: Props) {
-  return <div className={cn(className, 'h-1')} />
+  return <div className={cn(className, 'h-1 rounded-full')} />
 }

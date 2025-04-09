@@ -1,6 +1,6 @@
 import RectDecorator from '@/lib/components/decorators/RectDecorator'
 import MasterCard from '@/lib/components/mastercard/MasterCard'
-import BarSlider from '@/lib/components/barslider/BarSlider'
+import BarSlider from '@/lib/components/sliders/BarSlider'
 import { masters } from '@/lib/mocks/masters'
 import { montserratFont } from '@/lib/fonts/montserrat'
 import { cn } from '@/lib/utils/cn'
@@ -18,9 +18,16 @@ export default function MasterFeed() {
         <RectDecorator className="bg-app-blue-500 mt-3 w-14" />
       </h2>
       <BarSlider color="blue">
-        {masters.map((master) => {
-          return <MasterCard key={master.id} {...master} />
-        })}
+        <ul className="flex justify-around gap-8 w-full duration-700 ease-in-out">
+          {masters.map((master) => {
+            return <MasterCard key={master.id} {...master} />
+          })}
+        </ul>
+        <ul className="flex justify-around gap-8 w-full duration-700 ease-in-out">
+          {masters.map((master) => {
+            return <MasterCard key={master.id} {...master} />
+          })}
+        </ul>
       </BarSlider>
     </article>
   )

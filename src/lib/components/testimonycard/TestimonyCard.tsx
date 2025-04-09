@@ -16,7 +16,12 @@ export default function TestimonyCard({
   className,
 }: Props) {
   return (
-    <article className={cn('w-[360px] px-6 py-8 flex flex-wrap gap-4 rounded-xl', className)}>
+    <article
+      className={cn(
+        'w-[360px] px-6 py-8 flex flex-wrap items-center gap-y-4 gap-x-6 rounded-xl',
+        className
+      )}
+    >
       <StarRating rating={rating} />
       <p className="w-full text-gray-500 three-line-clamp">{testimony}</p>
       <Image src={image} alt={name} width={100} height={100} className="size-16 rounded-full" />
