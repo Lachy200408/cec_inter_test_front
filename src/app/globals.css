@@ -1,9 +1,5 @@
 @import 'tailwindcss';
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@plugin 'daisyui';
 
 @theme inline {
   --color-app-blue: #000099;
@@ -92,13 +88,17 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .three-line-clamp {
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 
 body {
+  color: #171717;
   font-family: Arial, Helvetica, sans-serif;
 }
