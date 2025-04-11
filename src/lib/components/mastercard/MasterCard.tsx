@@ -1,11 +1,11 @@
 import type { MasterType } from '@/lib/types/master-type'
 import Image from 'next/image'
 
-export default function MasterCard({ name, description, image, workrole }: MasterType) {
+export default function MasterCard({ name, description, workrole }: MasterType) {
   return (
     <article className="w-[360px] bg-white px-6 py-8 flex flex-wrap items-center gap-x-6 gap-y-4 rounded-lg">
       <Image
-        src={image}
+        src="/master-1.webp"
         alt={name}
         width={100}
         height={100}

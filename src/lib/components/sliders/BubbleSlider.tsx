@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils/cn'
 interface Props {
   color?: 'blue' | 'yellow'
   className?: string
-  children: Array<React.ReactNode>
+  children: Array<React.ReactNode> | React.ReactNode
 }
 
 export default function BubbleSlider({ children, className, color = 'blue' }: Props) {
@@ -17,8 +17,8 @@ export default function BubbleSlider({ children, className, color = 'blue' }: Pr
     carousel: {
       item: {
         wrapper: {
-          off: 'w-full shrink-0 transform cursor-default snap-center',
-          on: 'w-full shrink-0 transform cursor-default snap-center',
+          off: 'w-full h-[336px] shrink-0 transform cursor-default snap-center',
+          on: 'w-full h-[336px] shrink-0 transform cursor-default snap-center',
         },
       },
       indicators: {
@@ -31,7 +31,7 @@ export default function BubbleSlider({ children, className, color = 'blue' }: Pr
           'flex justify-center gap-2 w-full absolute -bottom-4 left-1/2 -translate-x-1/2 z-10',
       },
       scrollContainer: {
-        base: 'flex h-full snap-mandatory overflow-y-hidden overflow-x-scroll scroll-smooth rounded-lg [scrollbar-width:thin] [scrollbar-color:transparent_transparent]',
+        base: 'flex h-full snap-mandatory overflow-y-hidden overflow-x-scroll gap-12 scroll-smooth rounded-lg [scrollbar-width:thin] [scrollbar-color:transparent_transparent]',
         snap: 'snap-x',
       },
     },
@@ -39,13 +39,13 @@ export default function BubbleSlider({ children, className, color = 'blue' }: Pr
 
   return (
     <>
-      <div className={cn('grid place-items-center', className)}>
+      <div className={cn('grid justify-items-center', className)}>
         <ThemeProvider theme={theme}>
           <Carousel
             leftControl={<SliderButton className="absolute top-1/4 -left-12 rotate-180" />}
             rightControl={<SliderButton className="absolute top-1/4 -right-12" />}
             slide={false}
-            className="min-h-[368px]"
+            className="h-[368px]"
           >
             {children}
           </Carousel>

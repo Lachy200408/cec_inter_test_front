@@ -1,11 +1,20 @@
+'use client'
+
+import type { TestimonyType } from '@/lib/types/testimony-type'
 import RectDecorator from '@/lib/components/decorators/RectDecorator'
+import TestimonyLoadingList from '@/lib/components/testimonyloadinglist/TestimonyLoadingList'
+import ErrorFeedback from '@/lib/components/errorfeedback/ErrorFeedback'
 import BarSlider from '@/lib/components/sliders/BarSlider'
 import TestimonyCard from '@/lib/components/testimonycard/TestimonyCard'
 import { montserratFont } from '@/lib/fonts/montserrat'
 import { cn } from '@/lib/utils/cn'
-import { testimonies } from '@/lib/mocks/testimonies'
+import { splitArray } from '@/lib/utils/splitArray'
+import { useApi } from '@/lib/hooks/useApi'
 
 export default function Testimonies() {
+  const { data: testimonies, error, loading } = useApi<Array<TestimonyType>>('/testimonies?q=9')
+  const testimonyList = splitArray(testimonies ?? [], 3)
+
   return (
     <article
       className={cn(
@@ -17,34 +26,36 @@ export default function Testimonies() {
         Testimonios
         <RectDecorator className="bg-app-blue-500 mt-3 w-14" />
       </h2>
-      <BarSlider color="yellow">
-        <ul className="flex justify-around gap-8 w-full duration-700 ease-in-out bg-white">
-          {testimonies.map((testimony, index) => {
+      {loading && <TestimonyLoadingList />}
+      {testimonies && testimonies.length > 0 && (
+        <BarSlider color="yellow" className="w-full">
+          {testimonyList.map((list, index) => {
             return (
-              <TestimonyCard
-                key={testimony.id + index + 34}
-                className={
-                  index % 2 === 0 ? 'bg-app-yellow-500/15' : 'bg-app-blue-500 **:text-white/80'
-                }
-                {...testimony}
-              />
+              <ul key={index} className="flex justify-center gap-8 w-full duration-700 ease-in-out">
+                {list.map((testimony, index) => {
+                  return (
+                    <TestimonyCard
+                      key={testimony.id}
+                      className={
+                        index % 2 === 0
+                          ? 'bg-app-yellow-500/15'
+                          : 'bg-app-blue-500 **:text-white/80'
+                      }
+                      {...testimony}
+                    />
+                  )
+                })}
+              </ul>
             )
           })}
-        </ul>
-        <ul className="flex justify-around gap-8 w-full duration-700 ease-in-out bg-white">
-          {testimonies.map((testimony, index) => {
-            return (
-              <TestimonyCard
-                key={testimony.id + index}
-                className={
-                  index % 2 !== 0 ? 'bg-app-yellow-500/15' : 'bg-app-blue-500 **:text-white/80'
-                }
-                {...testimony}
-              />
-            )
-          })}
-        </ul>
-      </BarSlider>
+        </BarSlider>
+      )}
+      {(error || (testimonies && testimonies.length === 0)) && (
+        <ErrorFeedback
+          error="No se ha podido cargar los testimonios"
+          feedback="Recargue la página para verlos"
+        />
+      )}
     </article>
   )
 }

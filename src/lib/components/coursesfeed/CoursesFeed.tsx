@@ -1,66 +1,67 @@
-import { LanguageIcon } from '@heroicons/react/24/outline'
-import { BriefcaseIcon } from '@heroicons/react/20/solid'
-import { BeakerIcon, AcademicCapIcon, PaintBrushIcon, HeartIcon } from '@heroicons/react/16/solid'
+'use client'
+
+import type { CourseNavigationSection } from '@/lib/types/course-navigation-section.type'
+import type { CourseType } from '@/lib/types/courses-type'
+import { COURSE_NAVIGATION_SECTION_INITIAL_STATE } from '@/lib/constants/course-navigation-section-init-st'
 import CourseCard from '@/lib/components/coursecard/CourseCard'
 import BubbleSlider from '@/lib/components/sliders/BubbleSlider'
-import RectDecorator from '@/lib/components/decorators/RectDecorator'
-import CourseNavigationItem from '@/lib/components/coursenavigationitem/CourseNavigationItem'
-import { courses } from '@/lib/mocks/courses'
+import CourseNavigation from '@/lib/components/coursenavigation/CourseNavigation'
+import CourseLoadingList from '@/lib/components/courseloadinglist/CourseLoadingList'
+import ErrorFeedback from '@/lib/components/errorfeedback/ErrorFeedback'
 import { montserratFont } from '@/lib/fonts/montserrat'
 import { cn } from '@/lib/utils/cn'
+import { splitArray } from '@/lib/utils/splitArray'
+import { useApi } from '@/lib/hooks/useApi'
+import { useState, useEffect } from 'react'
 
 export default function CoursesFeed() {
+  const [activeSection, setActiveSection] = useState<CourseNavigationSection>(
+    COURSE_NAVIGATION_SECTION_INITIAL_STATE
+  )
+  const {
+    data: courses,
+    error,
+    loading,
+    refetch,
+  } = useApi<Array<CourseType>>(`/courses/category/${activeSection.section}?q=12`)
+  const courseList = splitArray(courses ?? [], 4)
+
+  useEffect(() => {
+    refetch(`/courses/category/${activeSection.section}?q=12`)
+  }, [activeSection])
+
   return (
     <article
       className={cn(
-        'relative w-full grid justify-items-center gap-8 pt-12 mb-4',
+        'relative w-full h-[548px] grid justify-items-center gap-[32px] pt-[48px] mb-4',
         montserratFont.className
       )}
     >
-      <div className=" absolute top-0 w-svw h-[348px] bg-app-blue-500" />
-      <nav className="relative z-10 bg-white rounded-xl py-4 px-8 w-320">
-        <div className="flex items-center justify-center gap-12 w-full">
-          <CourseNavigationItem className="w-1/6 min-w-44 justify-center uppercase">
-            <BeakerIcon className="size-6" />
-            Ciencias
-          </CourseNavigationItem>
-          <CourseNavigationItem className="w-1/6 min-w-44 justify-center uppercase">
-            <AcademicCapIcon className="size-6" />
-            Letras
-          </CourseNavigationItem>
-          <CourseNavigationItem className="w-1/6 min-w-44 justify-center uppercase">
-            <PaintBrushIcon className="size-6" />
-            Artes
-          </CourseNavigationItem>
-          <CourseNavigationItem className="w-1/6 min-w-44 justify-center uppercase">
-            <BriefcaseIcon className="size-6 overflow-hidden" />
-            Negocios
-          </CourseNavigationItem>
-          <CourseNavigationItem className="w-1/6 min-w-44 justify-center uppercase">
-            <LanguageIcon className="size-6" />
-            Idiomas
-          </CourseNavigationItem>
-          <CourseNavigationItem className="w-1/6 min-w-44 justify-center uppercase">
-            <HeartIcon className="size-6" />
-            Salud
-          </CourseNavigationItem>
-        </div>
-        <div className="w-full h-1 mt-3 relative">
-          <RectDecorator className="absolute top-0 left-0 h-1.5 w-16 bg-app-blue-500" />
-        </div>
-      </nav>
-      <BubbleSlider color="blue" className="w-320">
-        <ul className="flex justify-around gap-8 w-full duration-700 ease-in-out">
-          {courses.map((course) => {
-            return <CourseCard key={course.id} {...course} />
+      <div className="absolute top-0 w-svw h-[348px] bg-app-blue-500" />
+      <CourseNavigation activeSection={activeSection} setActiveSection={setActiveSection} />
+      {loading && <CourseLoadingList className="w-320 h-[368px] relative bottom-0 z-10" />}
+      {courses && courses.length > 0 && (
+        <BubbleSlider className="w-320 h-[368px] absolute bottom-[4px] z-10">
+          {courseList.map((list, index) => {
+            return (
+              <ul
+                key={index}
+                className="flex justify-center gap-12 w-full duration-700 ease-in-out"
+              >
+                {list.map((course, index) => {
+                  return <CourseCard key={index} {...course} />
+                })}
+              </ul>
+            )
           })}
-        </ul>
-        <ul className="flex justify-around gap-8 w-full duration-700 ease-in-out">
-          {courses.map((course) => {
-            return <CourseCard key={course.id + 32} {...course} />
-          })}
-        </ul>
-      </BubbleSlider>
+        </BubbleSlider>
+      )}
+      {(error || (courses && courses.length === 0)) && (
+        <ErrorFeedback
+          error="No se ha podido cargar los cursos"
+          feedback="Recargue la página para verlos"
+        />
+      )}
     </article>
   )
 }

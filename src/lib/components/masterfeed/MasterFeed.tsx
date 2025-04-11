@@ -1,11 +1,20 @@
+'use client'
+
+import type { MasterType } from '@/lib/types/master-type'
 import RectDecorator from '@/lib/components/decorators/RectDecorator'
 import MasterCard from '@/lib/components/mastercard/MasterCard'
 import BarSlider from '@/lib/components/sliders/BarSlider'
-import { masters } from '@/lib/mocks/masters'
+import MasterLoadingList from '@/lib/components/masterloadinglist/MasterLoadingList'
+import ErrorFeedback from '@/lib/components/errorfeedback/ErrorFeedback'
 import { montserratFont } from '@/lib/fonts/montserrat'
 import { cn } from '@/lib/utils/cn'
+import { splitArray } from '@/lib/utils/splitArray'
+import { useApi } from '@/lib/hooks/useApi'
 
 export default function MasterFeed() {
+  const { data: masters, error, loading } = useApi<Array<MasterType>>('/masters?q=9')
+  const masterList = splitArray(masters ?? [], 3)
+
   return (
     <article
       className={cn(
@@ -17,18 +26,26 @@ export default function MasterFeed() {
         Nuestros profesores
         <RectDecorator className="bg-app-blue-500 mt-3 w-14" />
       </h2>
-      <BarSlider color="blue">
-        <ul className="flex justify-around gap-8 w-full duration-700 ease-in-out">
-          {masters.map((master) => {
-            return <MasterCard key={master.id} {...master} />
+      {loading && <MasterLoadingList />}
+      {masters && masters.length > 0 && (
+        <BarSlider color="blue" className="w-full">
+          {masterList.map((list, index) => {
+            return (
+              <ul key={index} className="flex justify-center gap-8 w-full duration-700 ease-in-out">
+                {list.map((master, index) => {
+                  return <MasterCard key={index} {...master} />
+                })}
+              </ul>
+            )
           })}
-        </ul>
-        <ul className="flex justify-around gap-8 w-full duration-700 ease-in-out">
-          {masters.map((master) => {
-            return <MasterCard key={master.id} {...master} />
-          })}
-        </ul>
-      </BarSlider>
+        </BarSlider>
+      )}
+      {(error || (masters && masters.length === 0)) && (
+        <ErrorFeedback
+          error="No se ha podido cargar los profesores"
+          feedback="Recargue la página para verlos"
+        />
+      )}
     </article>
   )
 }

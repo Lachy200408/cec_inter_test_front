@@ -101,6 +101,15 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  .skeleton {
+    background-image: linear-gradient(
+      105deg,
+      var(--color-gray-100) 0% 40%,
+      var(--color-gray-200) 50%,
+      var(--color-gray-100) 60% 100%
+    );
+    background-repeat: repeat;
+  }
 }
 
 body {

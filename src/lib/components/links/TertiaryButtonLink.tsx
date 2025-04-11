@@ -4,7 +4,13 @@ import { cn } from '@/lib/utils/cn'
 
 export default function TertiaryButtonLink({ href, children, className = '' }: ButtonLinkProps) {
   return (
-    <BaseButtonLink href={href} className={cn('bg-transparent text-white', className)}>
+    <BaseButtonLink
+      href={href}
+      className={cn(
+        'bg-transparent text-white hover:[text-decoration:underline_dashed] underline-offset-4',
+        className
+      )}
+    >
       {children}
     </BaseButtonLink>
   )

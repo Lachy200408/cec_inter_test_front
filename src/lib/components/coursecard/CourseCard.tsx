@@ -3,9 +3,8 @@ import { UserCircleIcon, CheckCircleIcon } from '@heroicons/react/16/solid'
 import Image from 'next/image'
 
 export default function CourseCard({
-  image,
   title,
-  subtitle,
+  description,
   degree,
   rating,
   users,
@@ -15,7 +14,7 @@ export default function CourseCard({
     <article className="w-[260px] h-[336px] bg-white rounded-2xl flex flex-col shadow-md">
       <figure className="w-full h-[172px] overflow-hidden relative">
         <Image
-          src={image}
+          src={'/course.png'}
           alt="Curso"
           width={260}
           height={172}
@@ -29,7 +28,9 @@ export default function CourseCard({
       <div className="w-full flex-1 grid grid-cols-2 grid-rows-[1fr,auto] p-4">
         <div className="col-span-2">
           <h6 className="font-medium max-w-48 text-balance">{title}</h6>
-          <small className="text-app-gray three-line-clamp max-w-56 text-balance">{subtitle}</small>
+          <small className="text-app-gray three-line-clamp max-w-56 text-balance">
+            {description}
+          </small>
         </div>
         <p className="text-app-blue-500 self-center">{degree}</p>
         <div className="flex items-center gap-2 self-center justify-self-end">

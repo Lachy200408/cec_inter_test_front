@@ -3,13 +3,18 @@
 import NavigationBar from '@/lib/components/navigationbar/NavigationBar'
 import SliderButton from '@/lib/components/sliderbutton/SliderButton'
 import { Carousel, ThemeProvider, createTheme } from 'flowbite-react'
+import { cn } from '@/lib/utils/cn'
+import { useState } from 'react'
 
 interface Props {
   color?: 'blue' | 'yellow'
+  className?: string
   children: Array<React.ReactNode>
 }
 
-export default function BarSlider({ children, color = 'blue' }: Props) {
+export default function BarSlider({ children, color = 'blue', className }: Props) {
+  const [currentPage, setCurrentPage] = useState(0)
+  const pages = children.length
   const theme = createTheme({
     carousel: {
       item: {
@@ -27,7 +32,7 @@ export default function BarSlider({ children, color = 'blue' }: Props) {
 
   return (
     <>
-      <div className="relative w-full grid place-items-center">
+      <div className={cn('grid place-items-center', className)}>
         <ThemeProvider theme={theme}>
           <Carousel
             leftControl={
@@ -36,6 +41,7 @@ export default function BarSlider({ children, color = 'blue' }: Props) {
             rightControl={<SliderButton className="absolute top-1/2 -right-12 -translate-y-1/2" />}
             indicators={false}
             slide={false}
+            onSlideChange={(page) => setCurrentPage(page)}
             className="min-h-72"
           >
             {children}
@@ -43,7 +49,7 @@ export default function BarSlider({ children, color = 'blue' }: Props) {
         </ThemeProvider>
       </div>
 
-      <NavigationBar color={color} />
+      <NavigationBar color={color} currentPage={currentPage} pages={pages} />
     </>
   )
 }

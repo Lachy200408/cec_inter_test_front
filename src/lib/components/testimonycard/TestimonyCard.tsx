@@ -7,14 +7,7 @@ interface Props extends TestimonyType {
   className?: string
 }
 
-export default function TestimonyCard({
-  name,
-  testimony,
-  image,
-  occupation,
-  rating,
-  className,
-}: Props) {
+export default function TestimonyCard({ name, testimony, occupation, rating, className }: Props) {
   return (
     <article
       className={cn(
@@ -24,7 +17,13 @@ export default function TestimonyCard({
     >
       <StarRating rating={rating} />
       <p className="w-full text-gray-500 three-line-clamp">{testimony}</p>
-      <Image src={image} alt={name} width={100} height={100} className="size-16 rounded-full" />
+      <Image
+        src={'/master-1.webp'}
+        alt={name}
+        width={100}
+        height={100}
+        className="size-16 rounded-full"
+      />
       <div className="flex-1">
         <h6 className="font-medium">{name}</h6>
         <p className="text-gray-500">{occupation}</p>

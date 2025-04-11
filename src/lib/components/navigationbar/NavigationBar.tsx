@@ -2,9 +2,13 @@ import { cn } from '@/lib/utils/cn'
 
 interface Props {
   color?: 'blue' | 'yellow'
+  currentPage: number
+  pages: number
 }
 
-export default function NavigationBar({ color = 'blue' }: Props) {
+export default function NavigationBar({ color = 'blue', currentPage, pages }: Props) {
+  const width = `${100 / pages}%`
+  const left = `${(currentPage / pages) * 100}%`
   return (
     <div
       className={cn(
@@ -14,9 +18,10 @@ export default function NavigationBar({ color = 'blue' }: Props) {
     >
       <div
         className={cn(
-          'w-[40px] h-[4px] absolute top-0 left-0 rounded-full',
+          'h-[4px] absolute top-0 rounded-full transition-all duration-300',
           color === 'blue' ? 'bg-app-blue-500' : 'bg-app-yellow-500'
         )}
+        style={{ width: width, left: left }}
       />
     </div>
   )
