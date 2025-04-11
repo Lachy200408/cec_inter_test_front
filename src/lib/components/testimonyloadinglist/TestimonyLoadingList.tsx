@@ -13,7 +13,7 @@ export default function TestimonyLoadingList() {
       {[1, 2, 3, 4].map((key) => {
         return (
           <ul key={key} className="flex justify-center gap-16 w-full duration-700 ease-in-out">
-            {Array(itemsQuantity)
+            {Array(itemsQuantity > 3 ? 3 : itemsQuantity)
               .fill(0)
               .map((_, key) => {
                 return <LoadingTestimonyCard key={key} />

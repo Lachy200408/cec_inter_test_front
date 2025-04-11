@@ -16,7 +16,7 @@ import { SLIDER_THEME_COLORS } from '@/lib/constants/slider-theme-colors.enum'
 export default function MasterFeed() {
   const { data: masters, error, loading } = useApi<Array<MasterType>>('/masters?q=9')
   const itemsQuantity = useItemsQuantity()
-  const masterList = splitArray(masters ?? [], itemsQuantity)
+  const masterList = splitArray(masters ?? [], itemsQuantity > 3 ? 3 : itemsQuantity)
 
   return (
     <article

@@ -16,7 +16,7 @@ import { SLIDER_THEME_COLORS } from '@/lib/constants/slider-theme-colors.enum'
 export default function Testimonies() {
   const { data: testimonies, error, loading } = useApi<Array<TestimonyType>>('/testimonies?q=9')
   const itemsQuantity = useItemsQuantity()
-  const testimonyList = splitArray(testimonies ?? [], itemsQuantity)
+  const testimonyList = splitArray(testimonies ?? [], itemsQuantity > 3 ? 3 : itemsQuantity)
 
   return (
     <article
