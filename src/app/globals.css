@@ -91,6 +91,54 @@
   h6 {
     @apply text-lg font-bold;
   }
+
+  @media (max-width: 768px) {
+    :root {
+      font-size: 12px;
+    }
+    h1 {
+      @apply text-4xl font-bold;
+    }
+    h2 {
+      @apply text-3xl font-bold;
+    }
+    h3 {
+      @apply text-2xl font-bold;
+    }
+    h4 {
+      @apply text-xl font-bold;
+    }
+    h5 {
+      @apply text-lg font-bold;
+    }
+    h6 {
+      @apply text-base font-bold;
+    }
+  }
+
+  @media (max-width: 640px) {
+    :root {
+      font-size: 10px;
+    }
+    h1 {
+      @apply text-3xl font-bold;
+    }
+    h2 {
+      @apply text-2xl font-bold;
+    }
+    h3 {
+      @apply text-xl font-bold;
+    }
+    h4 {
+      @apply text-lg font-bold;
+    }
+    h5 {
+      @apply text-base font-bold;
+    }
+    h6 {
+      @apply text-sm font-bold;
+    }
+  }
 }
 
 @layer utilities {
@@ -109,6 +157,16 @@
       var(--color-gray-100) 60% 100%
     );
     background-repeat: repeat;
+  }
+}
+
+@layer components {
+  .scroll-soft {
+    transition: scrollbar-color 0.1s linear 0.3s;
+    scrollbar-color: transparent transparent;
+  }
+  .scroll-soft:hover {
+    scrollbar-color: var(--color-app-blue-50) transparent;
   }
 }
 

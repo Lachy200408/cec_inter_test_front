@@ -5,9 +5,9 @@ import { cn } from '@/lib/utils/cn'
 
 export default function Footer() {
   return (
-    <footer className="bg-white min-h-md shadow-footer pt-20 pb-8 grid place-items-center">
-      <div className="flex flex-col max-w-360 w-full">
-        <section className="flex-1 grid grid-cols-4 grid-rows-[repeat(3,auto)] gap-8 w-full px-20">
+    <footer className="bg-white min-h-md shadow-footer pt-20 pb-8 grid place-items-center max-w-svw w-full">
+      <div className="flex flex-col items-center max-w-360 w-full">
+        <section className="flex-1 grid grid-cols-[repeat(4,minmax(128px,1fr))] grid-rows-[repeat(3,auto)] gap-8 w-[90vw] md:w-full px-4 md:px-20 overflow-x-auto scroll-soft box-border">
           <SecondaryLogo />
           <p className={cn(montserratFont.className, 'text-app-blue-500 uppercase')}>Explora</p>
           <p className={cn(montserratFont.className, 'text-app-blue-500 uppercase')}>Acerca de</p>
@@ -27,10 +27,10 @@ export default function Footer() {
           </Link>
         </section>
         <div className="w-full h-px bg-app-gray/25 my-16" />
-        <p className="pointer-events-none text-app-gray text-center mb-2">
+        <p className="pointer-events-none text-app-gray text-center mb-2 px-4 box-border">
           © CEC. 2024, Maccarian. Todos los derechos reservados
         </p>
-        <p className="pointer-events-none text-app-gray text-center max-w-6xl mx-auto">
+        <p className="pointer-events-none text-app-gray text-center max-w-6xl w-full mx-auto px-4 box-border">
           Cuando visita o interactúa con nuestros sitios, servicios o herramientas, nosotros o
           nuestros proveedores de servicios autorizados podemos utilizar cookies para almacenar
           información que le ayude a brindarle una experiencia mejor, más rápida y segura y con

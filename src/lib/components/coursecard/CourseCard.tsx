@@ -11,7 +11,7 @@ export default function CourseCard({
   college,
 }: CourseType) {
   return (
-    <article className="w-[260px] h-[336px] bg-white rounded-2xl flex flex-col shadow-md">
+    <article className="w-[196px] sm:w-[260px] h-[336px] bg-white rounded-2xl flex flex-col shadow-md overflow-hidden">
       <figure className="w-full h-[172px] overflow-hidden relative">
         <Image
           src={'/course.png'}

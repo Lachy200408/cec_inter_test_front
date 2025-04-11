@@ -10,10 +10,12 @@ import { montserratFont } from '@/lib/fonts/montserrat'
 import { cn } from '@/lib/utils/cn'
 import { splitArray } from '@/lib/utils/splitArray'
 import { useApi } from '@/lib/hooks/useApi'
+import { useItemsQuantity } from '@/lib/hooks/useItemsQuantity'
 
 export default function PopularCourses() {
   const { data: courses, error, loading } = useApi<Array<CourseType>>('/courses/popular?q=12')
-  const courseList = splitArray(courses ?? [], 4)
+  const itemsQuantity = useItemsQuantity()
+  const courseList = splitArray(courses ?? [], itemsQuantity)
 
   return (
     <article
@@ -22,14 +24,16 @@ export default function PopularCourses() {
         montserratFont.className
       )}
     >
-      <div className="absolute top-0 w-svw h-[348px] bg-app-yellow-500" />
+      <div className="absolute top-0 w-[2048px] h-[348px] bg-app-yellow-500" />
       <h2 className="relative z-10 text-center pt-8">
         Programas más populares
         <RectDecorator className="bg-app-blue-500 mt-3 w-14" />
       </h2>
-      {loading && <CourseLoadingList className="w-320 h-[368px] relative bottom-0 z-10" />}
+      {loading && (
+        <CourseLoadingList className="w-[min(1280px,80vw)] h-[368px] relative bottom-0 z-10" />
+      )}
       {courses && courses.length > 0 && (
-        <BubbleSlider className="w-320 h-[368px] absolute bottom-[4px] z-10">
+        <BubbleSlider className="w-[min(1280px,100%)] h-[368px] absolute bottom-[4px] z-10">
           {courseList.map((list, index) => {
             return (
               <ul

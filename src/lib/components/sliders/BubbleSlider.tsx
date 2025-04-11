@@ -28,7 +28,7 @@ export default function BubbleSlider({ children, className, color = 'blue' }: Pr
         },
         base: `border ${borderColorClass} size-4 rounded-full cursor-pointer`,
         wrapper:
-          'flex justify-center gap-2 w-full absolute -bottom-4 left-1/2 -translate-x-1/2 z-10',
+          'flex flex-wrap justify-center gap-2 max-w-[50vw] w-full absolute -bottom-4 left-1/2 -translate-x-1/2 z-10',
       },
       scrollContainer: {
         base: 'flex h-full snap-mandatory overflow-y-hidden overflow-x-scroll gap-12 scroll-smooth rounded-lg [scrollbar-width:thin] [scrollbar-color:transparent_transparent]',
@@ -42,8 +42,10 @@ export default function BubbleSlider({ children, className, color = 'blue' }: Pr
       <div className={cn('grid justify-items-center', className)}>
         <ThemeProvider theme={theme}>
           <Carousel
-            leftControl={<SliderButton className="absolute top-1/4 -left-12 rotate-180" />}
-            rightControl={<SliderButton className="absolute top-1/4 -right-12" />}
+            leftControl={
+              <SliderButton className="absolute top-1/4 left-0 md:-left-12 rotate-180" />
+            }
+            rightControl={<SliderButton className="absolute top-1/4 right-0 md:-right-12" />}
             slide={false}
             className="h-[368px]"
           >

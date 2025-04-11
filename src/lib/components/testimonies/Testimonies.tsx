@@ -10,10 +10,12 @@ import { montserratFont } from '@/lib/fonts/montserrat'
 import { cn } from '@/lib/utils/cn'
 import { splitArray } from '@/lib/utils/splitArray'
 import { useApi } from '@/lib/hooks/useApi'
+import { useItemsQuantity } from '@/lib/hooks/useItemsQuantity'
 
 export default function Testimonies() {
   const { data: testimonies, error, loading } = useApi<Array<TestimonyType>>('/testimonies?q=9')
-  const testimonyList = splitArray(testimonies ?? [], 3)
+  const itemsQuantity = useItemsQuantity()
+  const testimonyList = splitArray(testimonies ?? [], itemsQuantity)
 
   return (
     <article

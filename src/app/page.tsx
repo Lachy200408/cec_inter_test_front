@@ -13,7 +13,7 @@ export default function MainPage() {
   return (
     <>
       <Header />
-      <section className="bg-white grid gap-14 place-items-center w-full py-14 px-20 overflow-x-hidden">
+      <section className="bg-white grid gap-14 place-items-center max-w-svw w-full py-14 px-4 sm:px-12 md:px-20 overflow-x-hidden">
         <Promo />
         <Calling />
         <Companies />

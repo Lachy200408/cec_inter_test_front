@@ -56,8 +56,8 @@ export default function CourseNavigation({ activeSection, setActiveSection }: Pr
   const left = `${(100 / itemsLength) * currentIndex + (4 / itemsLength) * currentIndex}%`
 
   return (
-    <nav className="relative z-10 bg-white rounded-xl py-4 px-8 w-max h-max">
-      <div className="flex items-center justify-center gap-12 w-full">
+    <nav className="relative z-10 bg-white rounded-xl py-4 px-8 h-max w-max">
+      <div className="flex items-center 2xl:justify-center gap-12 max-lg:max-w-[70vw] max-w-[80vw] overflow-x-auto scroll-soft">
         {navigationItems.map((item, index) => {
           return (
             <CourseNavigationItem
@@ -71,7 +71,7 @@ export default function CourseNavigation({ activeSection, setActiveSection }: Pr
           )
         })}
       </div>
-      <div className="w-full h-1 mt-3 relative">
+      <div className="w-full h-1 mt-3 relative max-2xl:hidden">
         <RectDecorator
           className="absolute top-0 h-1.5 w-16 bg-app-blue-500 transition-all duration-300"
           style={{ left: left }}

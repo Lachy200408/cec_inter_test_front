@@ -12,6 +12,7 @@ import { montserratFont } from '@/lib/fonts/montserrat'
 import { cn } from '@/lib/utils/cn'
 import { splitArray } from '@/lib/utils/splitArray'
 import { useApi } from '@/lib/hooks/useApi'
+import { useItemsQuantity } from '@/lib/hooks/useItemsQuantity'
 import { useState, useEffect } from 'react'
 
 export default function CoursesFeed() {
@@ -24,7 +25,8 @@ export default function CoursesFeed() {
     loading,
     refetch,
   } = useApi<Array<CourseType>>(`/courses/category/${activeSection.section}?q=12`)
-  const courseList = splitArray(courses ?? [], 4)
+  const itemsQuantity = useItemsQuantity()
+  const courseList = splitArray(courses ?? [], itemsQuantity)
 
   useEffect(() => {
     refetch(`/courses/category/${activeSection.section}?q=12`)
@@ -37,11 +39,13 @@ export default function CoursesFeed() {
         montserratFont.className
       )}
     >
-      <div className="absolute top-0 w-svw h-[348px] bg-app-blue-500" />
+      <div className="absolute top-0 w-[2048px] h-[348px] bg-app-blue-500" />
       <CourseNavigation activeSection={activeSection} setActiveSection={setActiveSection} />
-      {loading && <CourseLoadingList className="w-320 h-[368px] relative bottom-0 z-10" />}
+      {loading && (
+        <CourseLoadingList className="w-[min(1280px,80vw)] h-[368px] relative bottom-0 z-10" />
+      )}
       {courses && courses.length > 0 && (
-        <BubbleSlider className="w-320 h-[368px] absolute bottom-[4px] z-10">
+        <BubbleSlider className="w-[min(1280px,100%)] h-[368px] absolute bottom-[4px] z-10">
           {courseList.map((list, index) => {
             return (
               <ul

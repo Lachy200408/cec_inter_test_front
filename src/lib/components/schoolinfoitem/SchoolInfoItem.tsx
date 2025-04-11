@@ -8,11 +8,11 @@ interface Props {
 export default function SchoolInfoItem({ head, children }: Props) {
   return (
     <>
-      <h6 className="flex gap-4 items-center font-bold">
+      <h6 className="flex gap-4 items-center font-bold max-md:text-xl">
         <CheckCircleIcon className="size-6 text-app-yellow-500" />
         {head}
       </h6>
-      <p>{children}</p>
+      <p className="max-md:text-lg">{children}</p>
     </>
   )
 }

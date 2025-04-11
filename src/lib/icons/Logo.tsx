@@ -1,12 +1,6 @@
-export default function Logo() {
+export default function Logo({ className }: { className?: string }) {
   return (
-    <svg
-      width="157"
-      height="53"
-      viewBox="0 0 157 53"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg className={className} viewBox="0 0 157 53" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_2352_635)">
         <path d="M155.891 39.9766H0.0195312V40.5735H155.891V39.9766Z" fill="white" />
         <path
