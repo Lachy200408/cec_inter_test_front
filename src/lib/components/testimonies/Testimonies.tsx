@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils/cn'
 import { splitArray } from '@/lib/utils/splitArray'
 import { useApi } from '@/lib/hooks/useApi'
 import { useItemsQuantity } from '@/lib/hooks/useItemsQuantity'
+import { SLIDER_THEME_COLORS } from '@/lib/constants/slider-theme-colors.enum'
 
 export default function Testimonies() {
   const { data: testimonies, error, loading } = useApi<Array<TestimonyType>>('/testimonies?q=9')
@@ -30,7 +31,7 @@ export default function Testimonies() {
       </h2>
       {loading && <TestimonyLoadingList />}
       {testimonies && testimonies.length > 0 && (
-        <BarSlider color="yellow" className="w-full">
+        <BarSlider color={SLIDER_THEME_COLORS.YELLOW} className="w-full">
           {testimonyList.map((list, index) => {
             return (
               <ul key={index} className="flex justify-center gap-8 w-full duration-700 ease-in-out">

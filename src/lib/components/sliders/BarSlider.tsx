@@ -1,5 +1,6 @@
 'use client'
 
+import { SLIDER_THEME_COLORS } from '@/lib/constants/slider-theme-colors.enum'
 import NavigationBar from '@/lib/components/navigationbar/NavigationBar'
 import SliderButton from '@/lib/components/sliderbutton/SliderButton'
 import { Carousel, ThemeProvider, createTheme } from 'flowbite-react'
@@ -7,12 +8,16 @@ import { cn } from '@/lib/utils/cn'
 import { useState } from 'react'
 
 interface Props {
-  color?: 'blue' | 'yellow'
+  color?: SLIDER_THEME_COLORS
   className?: string
   children: Array<React.ReactNode>
 }
 
-export default function BarSlider({ children, color = 'blue', className }: Props) {
+export default function BarSlider({
+  children,
+  color = SLIDER_THEME_COLORS.BLUE,
+  className,
+}: Props) {
   const [currentPage, setCurrentPage] = useState(0)
   const pages = children.length
   const theme = createTheme({

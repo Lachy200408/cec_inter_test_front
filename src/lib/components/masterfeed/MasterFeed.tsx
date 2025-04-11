@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils/cn'
 import { splitArray } from '@/lib/utils/splitArray'
 import { useApi } from '@/lib/hooks/useApi'
 import { useItemsQuantity } from '@/lib/hooks/useItemsQuantity'
+import { SLIDER_THEME_COLORS } from '@/lib/constants/slider-theme-colors.enum'
 
 export default function MasterFeed() {
   const { data: masters, error, loading } = useApi<Array<MasterType>>('/masters?q=9')
@@ -30,7 +31,7 @@ export default function MasterFeed() {
       </h2>
       {loading && <MasterLoadingList />}
       {masters && masters.length > 0 && (
-        <BarSlider color="blue" className="w-full">
+        <BarSlider color={SLIDER_THEME_COLORS.BLUE} className="w-full">
           {masterList.map((list, index) => {
             return (
               <ul key={index} className="flex justify-center gap-8 w-full duration-700 ease-in-out">
